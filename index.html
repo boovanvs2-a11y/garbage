@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Urban Pulse — Walkability, Waste & Climate Resilience</title>
+  <meta name="description" content="Urban Pulse integrates walkability assessment (Chitragupta), crowdsourced garbage reporting (NammaKasa), and climate resilience monitoring (Resilience360) into one powerful civic intelligence platform." />
+  <meta property="og:title" content="Urban Pulse — Civic Intelligence Platform" />
+  <meta property="og:description" content="Walkability, waste management, and climate resilience powered by Chitragupta, NammaKasa, and Resilience360." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ─── Ambient Background ──────────────────────────────────── -->
+  <div class="ambient-bg">
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <!-- ─── Navigation ──────────────────────────────────────────── -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-brand" id="nav-brand">
+        <div class="brand-icon">
+          <i class="fas fa-globe-americas"></i>
+        </div>
+        <span class="brand-text">Urban<span class="brand-accent">Pulse</span></span>
+      </a>
+      <div class="nav-links" id="nav-links">
+        <a href="#" class="nav-link active" data-section="dashboard" id="nav-dashboard">
+          <i class="fas fa-chart-line"></i> Dashboard
+        </a>
+        <a href="#" class="nav-link" data-section="walkability" id="nav-walkability">
+          <i class="fas fa-walking"></i> Walkability
+        </a>
+        <a href="#" class="nav-link" data-section="garbage" id="nav-garbage">
+          <i class="fas fa-recycle"></i> Waste
+        </a>
+        <a href="#" class="nav-link" data-section="climate" id="nav-climate">
+          <i class="fas fa-cloud-sun-rain"></i> Climate
+        </a>
+        <a href="#" class="nav-link" data-section="resources" id="nav-resources">
+          <i class="fas fa-link"></i> Resources
+        </a>
+      </div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ─── Main Content ────────────────────────────────────────── -->
+  <main class="main-content" id="main-content">
+
+    <!-- ═══ DASHBOARD SECTION ═══════════════════════════════════ -->
+    <section class="section section-active" id="section-dashboard">
+      <!-- Hero Banner -->
+      <div class="hero-banner" id="hero-banner">
+        <div class="hero-content">
+          <div class="hero-eyebrow">
+            <span class="hero-eyebrow-dot"></span>
+            Powered by Chitragupta · NammaKasa · Resilience360
+          </div>
+          <h1 class="hero-title">Urban Intelligence<br/><span class="hero-highlight">Command Center</span></h1>
+          <p class="hero-desc">Real-time civic monitoring across walkability, waste management, and climate resilience — unified into a single intelligence platform for Bengaluru.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary btn-hero" id="hero-explore-btn" data-target="walkability">
+              <i class="fas fa-walking"></i> Explore Walkability
+            </button>
+            <button class="btn btn-outline btn-hero" id="hero-report-btn" data-target="garbage">
+              <i class="fas fa-flag"></i> Report Waste
+            </button>
+          </div>
+        </div>
+        <div class="hero-stats-strip">
+          <div class="hero-stat">
+            <span class="hero-stat-value" id="hero-stat-areas">6</span>
+            <span class="hero-stat-label">Areas Monitored</span>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-value" id="hero-stat-wards">243</span>
+            <span class="hero-stat-label">Wards Tracked</span>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-value" id="hero-stat-events">5</span>
+            <span class="hero-stat-label">Climate Events</span>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-value" id="hero-stat-risk">83</span>
+            <span class="hero-stat-label">Avg Risk Score</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <div class="section-header-content">
+          <h2 class="section-title">
+            <span class="title-icon"><i class="fas fa-chart-line"></i></span>
+            Live Dashboard
+          </h2>
+          <p class="section-subtitle">Real-time urban intelligence aggregated across all three civic platforms</p>
+        </div>
+        <div class="header-badge">
+          <span class="live-dot"></span> Live Data
+        </div>
+      </div>
+
+      <!-- KPI Cards -->
+      <div class="kpi-grid" id="kpi-grid">
+        <div class="kpi-card kpi-walk" id="kpi-walkability">
+          <div class="kpi-icon"><i class="fas fa-shoe-prints"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-label">Avg. Walkability</span>
+            <span class="kpi-value" id="kpi-walk-score">--</span>
+            <span class="kpi-sub" id="kpi-walk-sub">Loading...</span>
+          </div>
+          <div class="kpi-source-badge">Chitragupta</div>
+        </div>
+        <div class="kpi-card kpi-waste" id="kpi-waste">
+          <div class="kpi-icon"><i class="fas fa-trash-alt"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-label">Waste Reports</span>
+            <span class="kpi-value" id="kpi-waste-total">--</span>
+            <span class="kpi-sub" id="kpi-waste-sub">Loading...</span>
+          </div>
+          <div class="kpi-source-badge">NammaKasa</div>
+        </div>
+        <div class="kpi-card kpi-climate" id="kpi-climate">
+          <div class="kpi-icon"><i class="fas fa-temperature-high"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-label">Climate Alerts</span>
+            <span class="kpi-value" id="kpi-climate-total">--</span>
+            <span class="kpi-sub" id="kpi-climate-sub">Loading...</span>
+          </div>
+          <div class="kpi-source-badge">Resilience360</div>
+        </div>
+        <div class="kpi-card kpi-assets" id="kpi-assets">
+          <div class="kpi-icon"><i class="fas fa-building"></i></div>
+          <div class="kpi-content">
+            <span class="kpi-label">Assets at Risk</span>
+            <span class="kpi-value" id="kpi-assets-total">--</span>
+            <span class="kpi-sub" id="kpi-assets-sub">Loading...</span>
+          </div>
+          <div class="kpi-source-badge">ResSolv™</div>
+        </div>
+      </div>
+
+      <!-- Charts Row -->
+      <div class="charts-grid">
+        <div class="chart-card" id="chart-walkability-scores">
+          <div class="chart-header">
+            <h3>Walkability by Area</h3>
+            <a href="https://www.chitragupta.co/" target="_blank" class="chart-badge">
+              <i class="fas fa-external-link-alt"></i> Chitragupta
+            </a>
+          </div>
+          <div class="chart-body">
+            <canvas id="canvas-walkability" width="500" height="280"></canvas>
+          </div>
+        </div>
+        <div class="chart-card" id="chart-waste-breakdown">
+          <div class="chart-header">
+            <h3>Waste by Type</h3>
+            <a href="https://www.nammakasa.in/" target="_blank" class="chart-badge">
+              <i class="fas fa-external-link-alt"></i> NammaKasa
+            </a>
+          </div>
+          <div class="chart-body">
+            <canvas id="canvas-waste" width="500" height="280"></canvas>
+          </div>
+        </div>
+        <div class="chart-card" id="chart-climate-risk">
+          <div class="chart-header">
+            <h3>Climate Risk Overview</h3>
+            <a href="https://resilience360.ai/" target="_blank" class="chart-badge">
+              <i class="fas fa-external-link-alt"></i> Resilience360
+            </a>
+          </div>
+          <div class="chart-body">
+            <canvas id="canvas-climate" width="500" height="280"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Activity -->
+      <div class="activity-card" id="activity-feed">
+        <div class="chart-header">
+          <h3><i class="fas fa-stream"></i> Recent Activity Feed</h3>
+          <span class="activity-count" id="activity-count">0 events</span>
+        </div>
+        <div class="activity-list" id="activity-list">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ WALKABILITY SECTION ═════════════════════════════════ -->
+    <section class="section" id="section-walkability">
+      <div class="section-header">
+        <div class="section-header-content">
+          <h1 class="section-title">
+            <span class="title-icon walk-icon"><i class="fas fa-walking"></i></span>
+            Walkability Index
+          </h1>
+          <p class="section-subtitle">
+            Assess and improve pedestrian infrastructure across Bengaluru — powered by
+            <a href="https://www.chitragupta.co/" target="_blank" class="resource-link">Chitragupta</a>
+          </p>
+        </div>
+        <a href="https://www.chitragupta.co/" target="_blank" class="platform-link-badge">
+          <i class="fas fa-external-link-alt"></i> Visit Chitragupta
+        </a>
+      </div>
+
+      <!-- Chitragupta Info Banner -->
+      <div class="info-banner chitragupta-banner" id="chitragupta-info">
+        <div class="info-banner-icon"><i class="fas fa-info-circle"></i></div>
+        <div class="info-banner-content">
+          <strong>About Chitragupta:</strong> A walkability assessment platform that evaluates pedestrian infrastructure quality — sidewalks, lighting, green cover, and accessibility. Urban Pulse integrates Chitragupta's methodology to generate walkability scores for every locality.
+        </div>
+        <a href="https://www.chitragupta.co/" target="_blank" class="info-banner-link">Learn more →</a>
+      </div>
+
+      <div class="content-split">
+        <!-- Report Form -->
+        <div class="form-card glass-card" id="walkability-form-card">
+          <h3><i class="fas fa-plus-circle"></i> Submit Assessment</h3>
+          <form id="walkability-form" class="report-form">
+            <div class="form-group">
+              <label for="walk-area">Area / Locality</label>
+              <input type="text" id="walk-area" placeholder="e.g., Indiranagar" required />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="walk-lat">Latitude</label>
+                <input type="number" step="any" id="walk-lat" placeholder="12.9716" required />
+              </div>
+              <div class="form-group">
+                <label for="walk-lng">Longitude</label>
+                <input type="number" step="any" id="walk-lng" placeholder="77.5946" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="walk-score">Walkability Score (0–100)</label>
+              <input type="range" id="walk-score" min="0" max="100" value="50" />
+              <div class="range-display" id="walk-score-display">50</div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="walk-sidewalk">Sidewalk Quality</label>
+                <select id="walk-sidewalk">
+                  <option value="Excellent">Excellent</option>
+                  <option value="Good">Good</option>
+                  <option value="Fair" selected>Fair</option>
+                  <option value="Poor">Poor</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="walk-lighting">Lighting</label>
+                <select id="walk-lighting">
+                  <option value="Well-lit">Well-lit</option>
+                  <option value="Good">Good</option>
+                  <option value="Moderate" selected>Moderate</option>
+                  <option value="Poor">Poor</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="walk-green">Green Cover</label>
+                <select id="walk-green">
+                  <option value="Excellent">Excellent</option>
+                  <option value="Good">Good</option>
+                  <option value="Moderate" selected>Moderate</option>
+                  <option value="Low">Low</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="walk-density">Pedestrian Density</label>
+                <select id="walk-density">
+                  <option value="High">High</option>
+                  <option value="Medium" selected>Medium</option>
+                  <option value="Low">Low</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="walk-reporter">Your Name</label>
+              <input type="text" id="walk-reporter" placeholder="Anonymous" />
+            </div>
+            <button type="submit" class="btn btn-primary" id="walk-submit-btn">
+              <i class="fas fa-paper-plane"></i> Submit Assessment
+            </button>
+          </form>
+        </div>
+
+        <!-- Reports List -->
+        <div class="data-card glass-card" id="walkability-reports-card">
+          <h3><i class="fas fa-list-ul"></i> All Assessments <span class="list-count" id="walk-count"></span></h3>
+          <div class="report-list" id="walkability-list">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ GARBAGE/WASTE SECTION ═══════════════════════════════ -->
+    <section class="section" id="section-garbage">
+      <div class="section-header">
+        <div class="section-header-content">
+          <h1 class="section-title">
+            <span class="title-icon waste-icon"><i class="fas fa-recycle"></i></span>
+            Waste Tracker
+          </h1>
+          <p class="section-subtitle">
+            Crowdsourced garbage reporting with ward-level accountability — inspired by
+            <a href="https://www.nammakasa.in/" target="_blank" class="resource-link">NammaKasa</a>
+          </p>
+        </div>
+        <a href="https://www.nammakasa.in/" target="_blank" class="platform-link-badge">
+          <i class="fas fa-external-link-alt"></i> Visit NammaKasa
+        </a>
+      </div>
+
+      <!-- NammaKasa Info Banner -->
+      <div class="info-banner nammakasa-banner" id="nammakasa-info">
+        <div class="info-banner-icon"><i class="fas fa-map-marked-alt"></i></div>
+        <div class="info-banner-content">
+          <strong>About NammaKasa:</strong> Bengaluru's crowdsourced garbage mapping platform covering all 243 wards. Report waste dumps with auto-detection of your ward, MLA, and MP — driving accountability from citizens to elected representatives. Urban Pulse mirrors this ward-level tracking for waste reports.
+        </div>
+        <a href="https://www.nammakasa.in/" target="_blank" class="info-banner-link">Learn more →</a>
+      </div>
+
+      <!-- Ward Accountability Strip -->
+      <div class="ward-strip" id="ward-strip">
+        <div class="ward-strip-item">
+          <i class="fas fa-map-pin"></i>
+          <span><strong>243</strong> Wards</span>
+        </div>
+        <div class="ward-strip-item">
+          <i class="fas fa-user-tie"></i>
+          <span>Every <strong>MLA</strong></span>
+        </div>
+        <div class="ward-strip-item">
+          <i class="fas fa-landmark"></i>
+          <span>Every <strong>MP</strong></span>
+        </div>
+        <div class="ward-strip-item highlight">
+          <i class="fas fa-bullhorn"></i>
+          <span>Report → <strong>Track → Accountability</strong></span>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="filter-bar glass-card" id="garbage-filters">
+        <div class="filter-group">
+          <label>Status</label>
+          <select id="filter-garbage-status">
+            <option value="">All</option>
+            <option value="Reported">Reported</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Resolved">Resolved</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Severity</label>
+          <select id="filter-garbage-severity">
+            <option value="">All</option>
+            <option value="Critical">Critical</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </select>
+        </div>
+        <button class="btn btn-outline" id="btn-apply-garbage-filter"><i class="fas fa-filter"></i> Apply</button>
+      </div>
+
+      <div class="content-split">
+        <!-- Report Form -->
+        <div class="form-card glass-card" id="garbage-form-card">
+          <h3><i class="fas fa-flag"></i> Report Waste</h3>
+          <form id="garbage-form" class="report-form">
+            <div class="form-group">
+              <label for="garb-area">Area / Locality</label>
+              <input type="text" id="garb-area" placeholder="e.g., Jayanagar" required />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="garb-lat">Latitude</label>
+                <input type="number" step="any" id="garb-lat" placeholder="12.9352" required />
+              </div>
+              <div class="form-group">
+                <label for="garb-lng">Longitude</label>
+                <input type="number" step="any" id="garb-lng" placeholder="77.6245" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="garb-type">Waste Type</label>
+                <select id="garb-type" required>
+                  <option value="Mixed Waste">Mixed Waste</option>
+                  <option value="Plastic">Plastic</option>
+                  <option value="Organic">Organic</option>
+                  <option value="Construction Debris">Construction Debris</option>
+                  <option value="E-Waste">E-Waste</option>
+                  <option value="Hazardous">Hazardous</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="garb-severity">Severity</label>
+                <select id="garb-severity">
+                  <option value="Low">Low</option>
+                  <option value="Medium" selected>Medium</option>
+                  <option value="High">High</option>
+                  <option value="Critical">Critical</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="garb-ward">Ward (auto-detected via NammaKasa methodology)</label>
+              <input type="text" id="garb-ward" placeholder="Auto-detect from coordinates" />
+            </div>
+            <div class="form-group">
+              <label for="garb-desc">Description</label>
+              <textarea id="garb-desc" rows="3" placeholder="Describe the waste issue..."></textarea>
+            </div>
+            <div class="form-group">
+              <label for="garb-reporter">Your Name</label>
+              <input type="text" id="garb-reporter" placeholder="Anonymous" />
+            </div>
+            <button type="submit" class="btn btn-primary" id="garb-submit-btn">
+              <i class="fas fa-flag"></i> Submit Report
+            </button>
+          </form>
+        </div>
+
+        <!-- Reports List -->
+        <div class="data-card glass-card" id="garbage-reports-card">
+          <h3><i class="fas fa-map-marked-alt"></i> Reported Waste <span class="list-count" id="garb-count"></span></h3>
+          <div class="report-list" id="garbage-list">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CLIMATE SECTION ═════════════════════════════════════ -->
+    <section class="section" id="section-climate">
+      <div class="section-header">
+        <div class="section-header-content">
+          <h1 class="section-title">
+            <span class="title-icon climate-icon"><i class="fas fa-cloud-sun-rain"></i></span>
+            Climate Resilience
+          </h1>
+          <p class="section-subtitle">
+            Monitor climate risks and build resilience — powered by
+            <a href="https://resilience360.ai/" target="_blank" class="resource-link">Resilience360™</a>
+          </p>
+        </div>
+        <a href="https://resilience360.ai/" target="_blank" class="platform-link-badge">
+          <i class="fas fa-external-link-alt"></i> Visit Resilience360
+        </a>
+      </div>
+
+      <!-- Resilience360 Info Banner -->
+      <div class="info-banner resilience-banner" id="resilience-info">
+        <div class="info-banner-icon"><i class="fas fa-shield-alt"></i></div>
+        <div class="info-banner-content">
+          <strong>About Resilience360™:</strong> The first enterprise software designed to future-proof 1 billion assets and people ahead of disaster by 2030. Their suite includes <strong>ResSolv™</strong> (hyperlocal risk assessment), <strong>ResScore™</strong> (climate resilience index with 6 pillars and 100+ parameters), and <strong>ResHub™</strong> (operational intelligence layer). Urban Pulse integrates their risk scoring methodology.
+        </div>
+        <a href="https://resilience360.ai/products/" target="_blank" class="info-banner-link">View Products →</a>
+      </div>
+
+      <!-- Stats Bar -->
+      <div class="stats-bar" id="climate-stats-bar">
+        <div class="stat-pill" id="stat-avg-risk">
+          <i class="fas fa-tachometer-alt"></i>
+          <span>Avg Risk: <strong id="stat-risk-val">--</strong></span>
+        </div>
+        <div class="stat-pill critical" id="stat-critical-alerts">
+          <i class="fas fa-exclamation-triangle"></i>
+          <span>Critical: <strong id="stat-critical-val">--</strong></span>
+        </div>
+        <div class="stat-pill" id="stat-total-assets">
+          <i class="fas fa-city"></i>
+          <span>Assets at Risk: <strong id="stat-assets-val">--</strong></span>
+        </div>
+        <div class="stat-pill ressolv-pill">
+          <i class="fas fa-cube"></i>
+          <span>Methodology: <strong>ResSolv™</strong></span>
+        </div>
+      </div>
+
+      <!-- Resilience360 Product Suite Indicators -->
+      <div class="product-suite-bar" id="product-suite">
+        <div class="product-pill">
+          <div class="product-pill-icon"><i class="fas fa-crosshairs"></i></div>
+          <div class="product-pill-info">
+            <span class="product-pill-name">ResSolv™</span>
+            <span class="product-pill-desc">Hyperlocal Risk Assessment</span>
+          </div>
+        </div>
+        <div class="product-pill">
+          <div class="product-pill-icon"><i class="fas fa-poll"></i></div>
+          <div class="product-pill-info">
+            <span class="product-pill-name">ResScore™</span>
+            <span class="product-pill-desc">6-Pillar Resilience Index</span>
+          </div>
+        </div>
+        <div class="product-pill">
+          <div class="product-pill-icon"><i class="fas fa-database"></i></div>
+          <div class="product-pill-info">
+            <span class="product-pill-name">ResHub™</span>
+            <span class="product-pill-desc">Operational Intelligence</span>
+          </div>
+        </div>
+        <div class="product-pill">
+          <div class="product-pill-icon"><i class="fas fa-file-alt"></i></div>
+          <div class="product-pill-info">
+            <span class="product-pill-name">ResSuite</span>
+            <span class="product-pill-desc">Automated Reports</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Climate Alert Cards -->
+      <div class="climate-grid" id="climate-grid">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Report Climate Event -->
+      <div class="form-card glass-card climate-report-form" id="climate-form-card">
+        <h3><i class="fas fa-satellite-dish"></i> Report Climate Event</h3>
+        <form id="climate-form" class="report-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="clim-type">Event Type</label>
+              <select id="clim-type" required>
+                <option value="Flood">Flood</option>
+                <option value="Heat Wave">Heat Wave</option>
+                <option value="Air Quality">Air Quality</option>
+                <option value="Landslide">Landslide</option>
+                <option value="Water Stress">Water Stress</option>
+                <option value="Storm">Storm</option>
+                <option value="Drought">Drought</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="clim-severity">Severity</label>
+              <select id="clim-severity">
+                <option value="Low">Low</option>
+                <option value="Medium" selected>Medium</option>
+                <option value="High">High</option>
+                <option value="Critical">Critical</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="clim-area">Area</label>
+            <input type="text" id="clim-area" placeholder="e.g., Bellandur" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="clim-lat">Latitude</label>
+              <input type="number" step="any" id="clim-lat" placeholder="12.9256" required />
+            </div>
+            <div class="form-group">
+              <label for="clim-lng">Longitude</label>
+              <input type="number" step="any" id="clim-lng" placeholder="77.6700" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="clim-risk">ResSolv™ Risk Score (0–100)</label>
+              <input type="range" id="clim-risk" min="0" max="100" value="50" />
+              <div class="range-display" id="clim-risk-display">50</div>
+            </div>
+            <div class="form-group">
+              <label for="clim-assets">Affected Assets</label>
+              <input type="number" id="clim-assets" placeholder="0" min="0" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="clim-desc">Description</label>
+            <textarea id="clim-desc" rows="3" placeholder="Describe the climate event..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" id="clim-submit-btn">
+            <i class="fas fa-satellite-dish"></i> Submit Alert
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ═══ RESOURCES SECTION ═══════════════════════════════════ -->
+    <section class="section" id="section-resources">
+      <div class="section-header">
+        <div class="section-header-content">
+          <h1 class="section-title">
+            <span class="title-icon"><i class="fas fa-link"></i></span>
+            Platform Resources
+          </h1>
+          <p class="section-subtitle">Explore the platforms powering Urban Pulse's civic intelligence</p>
+        </div>
+      </div>
+
+      <div class="resource-grid">
+        <!-- Chitragupta Card -->
+        <a href="https://www.chitragupta.co/" target="_blank" class="resource-card chitragupta-card" id="resource-chitragupta">
+          <div class="resource-card-glow"></div>
+          <div class="resource-card-content">
+            <div class="resource-icon">
+              <i class="fas fa-walking"></i>
+            </div>
+            <h3>Chitragupta</h3>
+            <p class="resource-theme">Theme: Walkability</p>
+            <p class="resource-desc">Walkability assessment and pedestrian infrastructure analysis platform. Evaluates sidewalks, lighting, green cover, and pedestrian safety across urban areas.</p>
+            <div class="resource-features">
+              <div class="resource-feature"><i class="fas fa-check"></i> Sidewalk quality assessment</div>
+              <div class="resource-feature"><i class="fas fa-check"></i> Street lighting evaluation</div>
+              <div class="resource-feature"><i class="fas fa-check"></i> Green cover mapping</div>
+              <div class="resource-feature"><i class="fas fa-check"></i> Pedestrian safety scoring</div>
+            </div>
+            <div class="resource-tags">
+              <span class="tag">Pedestrian Safety</span>
+              <span class="tag">Urban Planning</span>
+              <span class="tag">Accessibility</span>
+            </div>
+            <span class="resource-cta">Visit Platform <i class="fas fa-external-link-alt"></i></span>
+          </div>
+        </a>
+
+        <!-- NammaKasa Card -->
+        <a href="https://www.nammakasa.in/" target="_blank" class="resource-card nammakasa-card" id="resource-nammakasa">
+          <div class="resource-card-glow"></div>
+          <div class="resource-card-content">
+            <div class="resource-icon">
+              <i class="fas fa-recycle"></i>
+            </div>
+            <h3>NammaKasa</h3>
+            <p class="resource-theme">Theme: Garbage / Waste</p>
+            <p class="resource-desc">Bengaluru's crowdsourced garbage mapping platform. Report waste dumps across 243 wards with auto-detection of your ward, MLA, and MP — track cleanup accountability.</p>
+            <div class="resource-features">
+              <div class="resource-feature"><i class="fas fa-check"></i> 243 ward coverage</div>
+              <div class="resource-feature"><i class="fas fa-check"></i> Auto-detect ward / MLA / MP</div>
+              <div class="resource-feature"><i class="fas fa-check"></i> Crowdsourced reporting</div>
+              <div class="resource-feature"><i class="fas fa-check"></i> Political accountability tracking</div>
+            </div>
+            <div class="resource-tags">
+              <span class="tag">Crowdsourced</span>
+              <span class="tag">Ward Mapping</span>
+              <span class="tag">Accountability</span>
+            </div>
+            <span class="resource-cta">Visit Platform <i class="fas fa-external-link-alt"></i></span>
+          </div>
+        </a>
+
+        <!-- Resilience360 Card -->
+        <a href="https://resilience360.ai/" target="_blank" class="resource-card resilience-card" id="resource-resilience">
+          <div class="resource-card-glow"></div>
+          <div class="resource-card-content">
+            <div class="resource-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Resilience360™</h3>
+            <p class="resource-theme">Theme: Climate Resilience</p>
+            <p class="resource-desc">Enterprise software to future-proof 1 billion assets and people by 2030. Climate lifecycle management from risk assessment to mitigation using AI and geo-spatial intelligence.</p>
+            <div class="resource-features">
+              <div class="resource-feature"><i class="fas fa-check"></i> ResSolv™ — Hyperlocal risk assessment</div>
+              <div class="resource-feature"><i class="fas fa-check"></i> ResScore™ — 6-pillar resilience index</div>
+              <div class="resource-feature"><i class="fas fa-check"></i> ResHub™ — Operational intelligence</div>
+              <div class="resource-feature"><i class="fas fa-check"></i> ResSuite — Automated compliance reports</div>
+            </div>
+            <div class="resource-tags">
+              <span class="tag">Climate Risk</span>
+              <span class="tag">Enterprise</span>
+              <span class="tag">AI/ML</span>
+              <span class="tag">Geo-spatial</span>
+            </div>
+            <span class="resource-cta">Visit Platform <i class="fas fa-external-link-alt"></i></span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Resilience360 Key Stats -->
+      <div class="impact-stats glass-card" id="impact-stats">
+        <h3><i class="fas fa-chart-bar"></i> Global Climate Impact <span class="impact-source">(Source: <a href="https://resilience360.ai/" target="_blank">Resilience360</a>)</span></h3>
+        <div class="impact-grid">
+          <div class="impact-item">
+            <span class="impact-value">$417B</span>
+            <span class="impact-label">Global economic losses in 2023 due to extreme events</span>
+          </div>
+          <div class="impact-item">
+            <span class="impact-value">92%</span>
+            <span class="impact-label">of world's biggest firms exposed to climate risk by 2050</span>
+          </div>
+          <div class="impact-item">
+            <span class="impact-value">$150M</span>
+            <span class="impact-label">Physical assets exposed globally</span>
+          </div>
+          <div class="impact-item">
+            <span class="impact-value">69%</span>
+            <span class="impact-label">of losses uninsured</span>
+          </div>
+          <div class="impact-item">
+            <span class="impact-value">65%</span>
+            <span class="impact-label">of companies fail to identify vulnerable areas</span>
+          </div>
+          <div class="impact-item">
+            <span class="impact-value">40</span>
+            <span class="impact-label">countries identify climate adaptation failure as top-5 risk</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resilience360 Partnerships & Use Cases -->
+      <div class="partnerships-card glass-card" id="partnerships-card">
+        <h3><i class="fas fa-handshake"></i> Key Partnerships & Applications <span class="impact-source">(Source: <a href="https://resilience360.ai/about-us/" target="_blank">Resilience360</a>)</span></h3>
+        <div class="partnerships-grid">
+          <div class="partnership-item">
+            <div class="partnership-icon"><i class="fas fa-city"></i></div>
+            <div class="partnership-info">
+              <strong>Urban Living Lab</strong>
+              <span>Vishakhapatnam — Hyperlocal asset risk assessment</span>
+            </div>
+          </div>
+          <div class="partnership-item">
+            <div class="partnership-icon"><i class="fas fa-map"></i></div>
+            <div class="partnership-info">
+              <strong>Pune & Raigad</strong>
+              <span>Hyperlocal asset risk mapping and classification</span>
+            </div>
+          </div>
+          <div class="partnership-item">
+            <div class="partnership-icon"><i class="fas fa-train"></i></div>
+            <div class="partnership-info">
+              <strong>Indian Railways USBRL</strong>
+              <span>AI/ML risk profile for rail infrastructure</span>
+            </div>
+          </div>
+          <div class="partnership-item">
+            <div class="partnership-icon"><i class="fas fa-industry"></i></div>
+            <div class="partnership-info">
+              <strong>Supply Chain & Energy</strong>
+              <span>Cross-sector resilience for MSME and enterprise</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ResScore Pillars -->
+      <div class="resscore-card glass-card" id="resscore-card">
+        <h3><i class="fas fa-poll"></i> ResScore™ — Climate Resilience Index <span class="impact-source">(6 Pillars, 100+ Parameters)</span></h3>
+        <div class="resscore-grid">
+          <div class="resscore-pillar">
+            <div class="pillar-icon"><i class="fas fa-chess-rook"></i></div>
+            <span class="pillar-name">Strategy</span>
+          </div>
+          <div class="resscore-pillar">
+            <div class="pillar-icon"><i class="fas fa-users"></i></div>
+            <span class="pillar-name">Social</span>
+          </div>
+          <div class="resscore-pillar">
+            <div class="pillar-icon"><i class="fas fa-building"></i></div>
+            <span class="pillar-name">Physical</span>
+          </div>
+          <div class="resscore-pillar">
+            <div class="pillar-icon"><i class="fas fa-leaf"></i></div>
+            <span class="pillar-name">Environment</span>
+          </div>
+          <div class="resscore-pillar">
+            <div class="pillar-icon"><i class="fas fa-chart-line"></i></div>
+            <span class="pillar-name">Economic</span>
+          </div>
+          <div class="resscore-pillar">
+            <div class="pillar-icon"><i class="fas fa-first-aid"></i></div>
+            <span class="pillar-name">Crisis Mgmt</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ─── Footer ─────────────────────────────────────────────────── -->
+  <footer class="site-footer" id="site-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="brand-icon"><i class="fas fa-globe-americas"></i></div>
+        <span class="brand-text">Urban<span class="brand-accent">Pulse</span></span>
+      </div>
+      <div class="footer-links">
+        <a href="https://www.chitragupta.co/" target="_blank">Chitragupta</a>
+        <a href="https://www.nammakasa.in/" target="_blank">NammaKasa</a>
+        <a href="https://resilience360.ai/" target="_blank">Resilience360</a>
+      </div>
+      <p class="footer-text">Civic intelligence platform integrating walkability, waste management, and climate resilience.</p>
+    </div>
+  </footer>
+
+  <!-- ─── Toast Container ──────────────────────────────────────── -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
