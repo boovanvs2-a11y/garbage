@@ -276,6 +276,11 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`\n  🌍 Urban Pulse Server running on http://localhost:${PORT}\n`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`\n  🌍 Urban Pulse Server running on http://localhost:${PORT}\n`);
+  });
+}
+
+// Export the Express API
+module.exports = app;
